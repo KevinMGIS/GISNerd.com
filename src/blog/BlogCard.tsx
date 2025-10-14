@@ -1,4 +1,5 @@
 import BlogVisual from './BlogVisual'
+import { formatDate } from '../utils/formatDate'
 
 interface Props {
   title: string
@@ -14,7 +15,7 @@ export default function BlogCard({ title, excerpt, date, readTime }: Props) {
         <BlogVisual />
       </div>
       <div className="p-6">
-        <div className="text-xs text-white/50">{new Date(date).toLocaleDateString()} • {readTime ?? '—'}</div>
+  <div className="text-xs text-white/50">{formatDate(date)} • {readTime ?? '—'}</div>
         <h3 className="mt-2 font-semibold text-lg">{title}</h3>
         <p className="mt-2 text-white/70 text-sm">{excerpt}</p>
         <span className="mt-4 inline-block text-primary">Read more →</span>

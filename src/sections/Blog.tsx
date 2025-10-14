@@ -1,14 +1,21 @@
 import { motion } from 'framer-motion'
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import BlogCard from '../blog/BlogCard'
 import { blogPosts } from '../blog/posts'
 import BlogModal from '../blog/BlogModal'
 
 export default function Blog() {
   const [openSlug, setOpenSlug] = useState<string | null>(null)
+  const scrollerRef = useRef<HTMLDivElement | null>(null)
   const sorted = [...blogPosts].sort(
     (a, b) => Date.parse(b.date) - Date.parse(a.date)
   )
+  const scrollBy = (dir: 'left' | 'right') => {
+    const el = scrollerRef.current
+    if (!el) return
+    const cardWidth = el.querySelector('article')?.clientWidth || 300
+    el.scrollBy({ left: dir === 'left' ? -cardWidth - 24 : cardWidth + 24, behavior: 'smooth' })
+  }
   return (
   <section id="blog" className="pt-12 pb-24 snap-section">
       <div className="mb-10 flex items-center justify-between">
@@ -24,7 +31,22 @@ export default function Blog() {
         <div className="pointer-events-none absolute inset-y-0 left-0 w-8 bg-gradient-to-r from-background to-transparent" />
         <div className="pointer-events-none absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-background to-transparent" />
 
+        <div className="hidden md:flex absolute -top-14 right-0 gap-2">
+          <button
+            type="button"
+            aria-label="Scroll left"
+            onClick={() => scrollBy('left')}
+            className="rounded-md border border-white/10 px-2 py-1 text-xs text-white/60 hover:text-white hover:bg-white/5"
+          >←</button>
+          <button
+            type="button"
+            aria-label="Scroll right"
+            onClick={() => scrollBy('right')}
+            className="rounded-md border border-white/10 px-2 py-1 text-xs text-white/60 hover:text-white hover:bg-white/5"
+          >→</button>
+        </div>
         <div
+          ref={scrollerRef}
           className="flex gap-6 overflow-x-auto snap-x snap-mandatory px-1 custom-scrollbar"
           style={{ scrollSnapType: 'x mandatory' }}
         >

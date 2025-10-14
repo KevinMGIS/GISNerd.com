@@ -4,8 +4,8 @@ import NavProgress from './components/NavProgress'
 import { postsIndex } from './blog/posts'
 import Hero from './sections/Hero'
 import Skills from './sections/Skills'
-import Portfolio from './sections/Portfolio'
 import Blog from './sections/Blog'
+import Portfolio from './sections/Portfolio'
 import Contact from './sections/Contact'
 import ProjectDetail from './sections/ProjectDetail'
 import ScrollToTop from './components/ScrollToTop'
@@ -22,8 +22,8 @@ function Home() {
           </Link>
           <nav className="flex gap-6 text-sm">
             <a href="#skills">Skills</a>
-            <a href="#portfolio">Portfolio</a>
             <a href="#blog">Blog</a>
+            <a href="#portfolio">Portfolio</a>
             <a href="#contact">Contact</a>
           </nav>
         </div>
@@ -34,9 +34,9 @@ function Home() {
 
         <Skills />
 
-        <Portfolio />
+  <Blog />
 
-        <Blog />
+  <Portfolio />
 
         <Contact />
       </main>

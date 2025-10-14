@@ -1,6 +1,8 @@
 import { useEffect, lazy, Suspense } from 'react'
 import BlogVisual from './BlogVisual'
 import { blogPosts, postsIndex } from './posts'
+import { formatDate } from '../utils/formatDate'
+import { track } from '../utils/analytics'
 
 interface Props {
   slug: string | null
@@ -15,6 +17,12 @@ export default function BlogModal({ slug, onClose }: Props) {
     document.addEventListener('keydown', onKey)
     return () => document.removeEventListener('keydown', onKey)
   }, [onClose])
+
+  // Track open/close
+  useEffect(() => {
+    if (slug) track({ type: 'blog_modal_open', slug })
+    else track({ type: 'blog_modal_close' })
+  }, [slug])
 
   if (!slug) return null
   const meta = blogPosts.find((p) => p.slug === slug)
@@ -35,7 +43,7 @@ export default function BlogModal({ slug, onClose }: Props) {
               <div>
                 <h2 className="text-2xl font-bold">{meta?.title ?? 'Post'}</h2>
                 <div className="text-xs text-white/50 mt-1">
-                  {meta?.date ? new Date(meta.date).toLocaleDateString() : ''}
+                  {meta?.date ? formatDate(meta.date) : ''}
                   {meta?.readTime ? ` • ${meta.readTime}` : ''}
                 </div>
               </div>
