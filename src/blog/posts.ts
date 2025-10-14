@@ -7,6 +7,7 @@ export const postsIndex: Record<string, () => Promise<{ default: ComponentType }
   'gis-unmapped': () => import('./posts/GISUnmapped.tsx'),
   'built-just-to-build': () => import('./posts/BuiltJustToBuild.tsx'),
   'hey-its-me': () => import('./posts/HeyItsMe.tsx'),
+  'trips': () => import('./posts/Trips.tsx'),
 }
 
 export const blogPosts: (BlogPostMeta & { component: string })[] = [
@@ -50,5 +51,15 @@ export const blogPosts: (BlogPostMeta & { component: string })[] = [
     tags: ['career', 'projects'],
     readTime: '4 min',
     component: 'built-just-to-build',
+  },
+  {
+    slug: 'trips',
+    title: 'Trips: Building Something Worth the Journey',
+    date: '2025-10-14',
+    excerpt:
+      'A small travel planning + memory app rekindled why building for yourself matters—and shaped this site rebuild.',
+    tags: ['projects', 'personal'],
+    readTime: '4 min',
+    component: 'trips',
   },
 ]
