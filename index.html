@@ -9,6 +9,18 @@
     <meta property="og:description" content="Spatial Intelligence, Powered by Code" />
     <meta property="og:image" content="/GISNerd_LOGO.png" />
     <meta property="og:type" content="website" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CZM0MX9Z30"></script>
+    <script>
+      // Only initialize GA in production builds
+      if (window.location.hostname !== 'localhost') {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-CZM0MX9Z30');
+        window.gtag = gtag;
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

@@ -13,6 +13,19 @@ export function track(event: Omit<AnalyticsEvent, 'timestamp'>) {
   if (import.meta.env.DEV) {
     console.log('[analytics]', full)
   }
+  // Forward to Google Analytics if gtag present
+  if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+    try {
+      window.gtag('event', full.type, {
+        event_category: 'custom',
+        event_label: full.slug ?? undefined,
+        slug: full.slug,
+        timestamp: full.timestamp,
+      })
+    } catch (e) {
+      if (import.meta.env.DEV) console.warn('gtag event failed', e)
+    }
+  }
   listeners.forEach(l => l(full))
 }
 
