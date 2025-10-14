@@ -8,6 +8,7 @@ export const postsIndex: Record<string, () => Promise<{ default: ComponentType }
   'built-just-to-build': () => import('./posts/BuiltJustToBuild.tsx'),
   'hey-its-me': () => import('./posts/HeyItsMe.tsx'),
   'trips': () => import('./posts/Trips.tsx'),
+  'why-i-built-the-grid': () => import('./posts/WhyIBuiltTheGrid.tsx'),
 }
 
 export const blogPosts: (BlogPostMeta & { component: string })[] = [
@@ -61,5 +62,15 @@ export const blogPosts: (BlogPostMeta & { component: string })[] = [
     tags: ['projects', 'personal'],
     readTime: '4 min',
     component: 'trips',
+  },
+  {
+    slug: 'why-i-built-the-grid',
+    title: 'Why I Built The Grid and What It Taught Me About System Design',
+    date: '2025-10-14',
+    excerpt:
+      'Turning scattered tools into a modular intranet taught me how systems grow best—small, connected, and purposeful.',
+    tags: ['systems', 'projects'],
+    readTime: '6 min',
+    component: 'why-i-built-the-grid',
   },
 ]
