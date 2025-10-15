@@ -1,12 +1,31 @@
-import { motion, useScroll, useTransform } from 'framer-motion'
-import { useRef } from 'react'
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion'
+import { useRef, useState } from 'react'
 import ContourLines from '../components/ContourLines'
 import Particles from '../components/Particles'
 
 export default function Hero() {
   const ref = useRef<HTMLElement>(null!)
+  const visualRef = useRef<HTMLDivElement>(null!)
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] })
   const y = useTransform(scrollYProgress, [0, 1], [0, 60])
+
+  // Mouse parallax effect
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+  const mouseX = useSpring(mousePosition.x, { stiffness: 150, damping: 20 })
+  const mouseY = useSpring(mousePosition.y, { stiffness: 150, damping: 20 })
+  const rotate = useTransform(mouseX, [-20, 20], [-2, 2])
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!visualRef.current) return
+    const rect = visualRef.current.getBoundingClientRect()
+    const x = (e.clientX - rect.left - rect.width / 2) / rect.width
+    const y = (e.clientY - rect.top - rect.height / 2) / rect.height
+    setMousePosition({ x: x * 30, y: y * 30 })
+  }
+
+  const handleMouseLeave = () => {
+    setMousePosition({ x: 0, y: 0 })
+  }
 
   return (
   <section id="hero" ref={ref} className="relative overflow-hidden min-h-[55vh] md:min-h-[58vh] flex items-start snap-section pt-0">
@@ -28,18 +47,45 @@ export default function Hero() {
           </p>
         </div>
         <motion.div
+          ref={visualRef}
           initial={{ opacity: 0, scale: 0.98 }}
-          animate={{ opacity: 1, scale: 1 }}
+          animate={{ 
+            opacity: 1, 
+            scale: 1,
+          }}
+          whileHover={{ scale: 1.02 }}
           transition={{ delay: 0.2, duration: 0.6 }}
           style={{ y }}
-          className="relative aspect-[5/4] rounded-xl bg-surface/60 border border-white/5 overflow-hidden"
+          onMouseMove={handleMouseMove}
+          onMouseLeave={handleMouseLeave}
+          className="relative aspect-[5/4] rounded-xl bg-surface/60 border border-white/5 overflow-hidden cursor-pointer"
         >
-          <div className="absolute inset-0">
+          <motion.div 
+            className="absolute inset-0"
+            animate={{
+              scale: [1, 1.05, 1],
+              rotate: [0, 2, 0, -2, 0],
+            }}
+            transition={{
+              duration: 20,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+            style={{ x: mouseX, y: mouseY, rotate }}
+          >
             <ContourLines lines={11} accentEvery={3} speed={26} />
-          </div>
-          <div
+          </motion.div>
+          <motion.div
             aria-hidden
             className="pointer-events-none absolute inset-0 rounded-xl"
+            animate={{
+              opacity: [0.8, 1, 0.8],
+            }}
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
             style={{
               boxShadow:
                 'inset 0 0 0 1px rgba(255,255,255,0.05), 0 0 80px rgba(255,107,53,0.08), 0 0 0 1px rgba(255,107,53,0.05)',

@@ -2,6 +2,7 @@ import { Routes, Route, Link, useParams } from 'react-router-dom'
 import React, { lazy, Suspense } from 'react'
 import NavProgress from './components/NavProgress'
 import Footer from './components/Footer'
+import NotFound from './components/NotFound'
 import { postsIndex } from './blog/posts'
 import Hero from './sections/Hero'
 import Skills from './sections/Skills'
@@ -75,6 +76,7 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/blog/:slug" element={<BlogDetail />} />
         <Route path="/projects/:id" element={<ProjectDetail />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   )
