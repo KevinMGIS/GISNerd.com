@@ -41,6 +41,7 @@ export default function ProjectDetail() {
                 src={project.screenshots?.[0] ?? project.image}
                 alt={`${project.title} screenshot`}
                 className="w-full h-full object-cover"
+                loading="lazy"
               />
             </div>
           </div>

@@ -1,6 +1,7 @@
 import { Routes, Route, Link, useParams } from 'react-router-dom'
 import React, { lazy, Suspense } from 'react'
 import NavProgress from './components/NavProgress'
+import Footer from './components/Footer'
 import { postsIndex } from './blog/posts'
 import Hero from './sections/Hero'
 import Skills from './sections/Skills'
@@ -21,10 +22,10 @@ function Home() {
             <span>GIS Nerd</span>
           </Link>
           <nav className="flex gap-6 text-sm">
-            <a href="#skills">Skills</a>
-            <a href="#blog">Blog</a>
-            <a href="#portfolio">Portfolio</a>
-            <a href="#contact">Contact</a>
+            <a href="#skills" className="transition-colors hover:text-primary">Skills</a>
+            <a href="#blog" className="transition-colors hover:text-primary">Blog</a>
+            <a href="#portfolio" className="transition-colors hover:text-primary">Portfolio</a>
+            <a href="#contact" className="transition-colors hover:text-primary">Contact</a>
           </nav>
         </div>
       </header>
@@ -41,7 +42,7 @@ function Home() {
         <Contact />
       </main>
 
-      <footer className="border-t border-white/5 py-10 text-center text-white/50 text-sm">© {new Date().getFullYear()} GIS Nerd</footer>
+      <Footer />
     </div>
   )
 }

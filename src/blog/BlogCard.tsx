@@ -17,7 +17,7 @@ export default function BlogCard({ title, excerpt, date, readTime }: Props) {
       <div className="p-6">
   <div className="text-xs text-white/50">{formatDate(date)} • {readTime ?? '—'}</div>
         <h3 className="mt-2 font-semibold text-lg">{title}</h3>
-        <p className="mt-2 text-white/70 text-sm">{excerpt}</p>
+        <p className="mt-2 text-white/80 text-sm">{excerpt}</p>
         <span className="mt-4 inline-block text-primary">Read more →</span>
       </div>
     </article>

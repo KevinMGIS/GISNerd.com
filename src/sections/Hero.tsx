@@ -19,11 +19,11 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="mt-0 text-5xl md:text-6xl font-extrabold leading-tight"
+            className="mt-0 text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight"
           >
             Spatial Intelligence, Powered by <span className="text-primary">Code</span>
           </motion.h1>
-          <p className="mt-6 text-lg text-white/70 max-w-prose">
+          <p className="mt-6 text-base sm:text-lg text-white/80 max-w-prose leading-relaxed">
             Hey, I’m Kevin — the GIS Nerd. I build tools that connect geography, data, and design to turn complex information into insight.
           </p>
         </div>
