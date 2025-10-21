@@ -1,5 +1,6 @@
 import { useParams, Link } from 'react-router-dom'
 import { projects } from '../data/projects'
+import SEO from '../components/SEO'
 
 export default function ProjectDetail() {
   const { id } = useParams()
@@ -16,6 +17,12 @@ export default function ProjectDetail() {
 
   return (
     <div className="min-h-screen bg-topo bg-topo-animated">
+      <SEO
+        title={`${project.title} | GIS Nerd - Kevin Mazur`}
+        description={project.description}
+        canonical={`https://gisnerd.com/projects/${project.id}`}
+        ogImage={project.image ? `https://gisnerd.com${project.image}` : undefined}
+      />
       <header className="sticky top-0 z-10 backdrop-blur border-b border-white/5 bg-background/60">
         <div className="mx-auto max-w-6xl px-6 h-16 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-3 font-semibold tracking-wide text-text">

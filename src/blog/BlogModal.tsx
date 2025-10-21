@@ -5,6 +5,7 @@ import BlogVisual from './BlogVisual'
 import { blogPosts, postsIndex } from './posts'
 import { formatDate } from '../utils/formatDate'
 import { track } from '../utils/analytics'
+import SEO from '../components/SEO'
 
 interface Props {
   slug: string | null
@@ -69,6 +70,14 @@ export default function BlogModal({ slug, onClose }: Props) {
     <AnimatePresence>
       {slug && (
         <div className="fixed inset-0 z-50">
+          <SEO
+            title={`${meta?.title ?? 'Blog Post'} | GIS Nerd - Kevin Mazur`}
+            description={meta?.excerpt ?? 'Read more on the GIS Nerd blog'}
+            canonical={`https://gisnerd.com/blog/${slug}`}
+            type="article"
+            publishedTime={meta?.date}
+            author="Kevin Mazur"
+          />
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
