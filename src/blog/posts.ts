@@ -9,6 +9,7 @@ export const postsIndex: Record<string, () => Promise<{ default: ComponentType }
   'hey-its-me': () => import('./posts/HeyItsMe.tsx'),
   'trips': () => import('./posts/Trips.tsx'),
   'why-i-built-the-grid': () => import('./posts/WhyIBuiltTheGrid.tsx'),
+  'building-siteiq': () => import('./posts/BuildingSiteIQ.tsx'),
 }
 
 export const blogPosts: (BlogPostMeta & { component: string })[] = [
@@ -72,5 +73,15 @@ export const blogPosts: (BlogPostMeta & { component: string })[] = [
     tags: ['systems', 'projects'],
     readTime: '6 min',
     component: 'why-i-built-the-grid',
+  },
+  {
+    slug: 'building-siteiq',
+    title: 'Building SiteIQ: A Parcel Scoring Tool That Actually Gets Used',
+    date: '2025-10-23',
+    excerpt:
+      'How I automated parcel evaluation from hours to minutes with Python and GIS, creating a tool that became part of our standard workflow.',
+    tags: ['gis', 'projects', 'automation'],
+    readTime: '4 min',
+    component: 'building-siteiq',
   },
 ]

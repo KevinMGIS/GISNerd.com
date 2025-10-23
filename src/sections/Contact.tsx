@@ -8,7 +8,7 @@ export default function Contact() {
       <div className="mt-6 flex flex-wrap gap-4">
         <a 
           href="/Kevin_Mazur_GIS_Resume.pdf" 
-          download
+          download="Kevin_Mazur_GIS_Resume.pdf"
           className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-black font-semibold rounded-lg hover:bg-primary/90 transition-all duration-200"
         >
           <Download size={20} />

@@ -68,7 +68,7 @@ export default function Hero() {
           >
             <a 
               href="/Kevin_Mazur_GIS_Resume.pdf" 
-              download
+              download="Kevin_Mazur_GIS_Resume.pdf"
               className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-black font-semibold rounded-lg hover:bg-primary/90 transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105"
             >
               <Download size={20} />
