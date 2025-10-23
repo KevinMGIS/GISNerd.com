@@ -51,7 +51,7 @@
         transparent 1px,
         transparent 10px
       );
-    background-color: #0A0A0A;
+    background-color: #2A2A2A;
   }
   .card-hover {
     transition-property: transform, box-shadow;

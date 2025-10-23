@@ -10,6 +10,7 @@ import Blog from './sections/Blog'
 import Portfolio from './sections/Portfolio'
 import Contact from './sections/Contact'
 import ProjectDetail from './sections/ProjectDetail'
+import Resume from './sections/Resume'
 import ScrollToTop from './components/ScrollToTop'
 
 function Home() {
@@ -26,6 +27,7 @@ function Home() {
             <a href="#skills" className="transition-colors hover:text-primary">Skills</a>
             <a href="#blog" className="transition-colors hover:text-primary">Blog</a>
             <a href="#portfolio" className="transition-colors hover:text-primary">Portfolio</a>
+            <Link to="/resume" className="transition-colors hover:text-primary">Resume</Link>
             <a href="#contact" className="transition-colors hover:text-primary">Contact</a>
           </nav>
         </div>
@@ -74,6 +76,7 @@ export default function App() {
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/resume" element={<Resume />} />
         <Route path="/blog/:slug" element={<BlogDetail />} />
         <Route path="/projects/:id" element={<ProjectDetail />} />
         <Route path="*" element={<NotFound />} />
