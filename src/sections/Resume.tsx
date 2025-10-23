@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Briefcase, GraduationCap, Award, Mail, Phone, Globe } from 'lucide-react';
+import { Briefcase, GraduationCap, Award, Mail, Phone, Globe, Download } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function Resume() {
@@ -37,7 +37,7 @@ export default function Resume() {
             <p className="text-xl text-primary mb-6">
               GIS & Technology Manager | Web GIS Development | Land Development Analytics
             </p>
-            <div className="flex flex-wrap gap-4 text-white/70">
+            <div className="flex flex-wrap gap-4 text-white/70 mb-6">
               <a href="mailto:kevin.m.mazur@gmail.com" className="flex items-center gap-2 hover:text-primary transition-colors">
                 <Mail size={18} />
                 kevin.m.mazur@gmail.com
@@ -49,6 +49,16 @@ export default function Resume() {
               <a href="https://gisnerd.com" className="flex items-center gap-2 hover:text-primary transition-colors">
                 <Globe size={18} />
                 GISNerd.com
+              </a>
+            </div>
+            <div>
+              <a 
+                href="/Kevin_Mazur_GIS_Resume.pdf" 
+                download
+                className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-black font-semibold rounded-lg hover:bg-primary/90 transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105"
+              >
+                <Download size={20} />
+                Download PDF Resume
               </a>
             </div>
           </div>

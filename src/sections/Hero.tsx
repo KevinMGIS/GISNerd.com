@@ -1,5 +1,6 @@
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion'
 import { useRef, useState } from 'react'
+import { Download, MapPin } from 'lucide-react'
 import ContourLines from '../components/ContourLines'
 import Particles from '../components/Particles'
 
@@ -28,11 +29,11 @@ export default function Hero() {
   }
 
   return (
-  <section id="hero" ref={ref} className="relative overflow-hidden min-h-[55vh] md:min-h-[58vh] flex items-start snap-section pt-0">
+    <section id="hero" ref={ref} className="relative overflow-hidden min-h-[55vh] md:min-h-[58vh] flex items-start snap-section pt-0">
       <div className="absolute inset-0 pointer-events-none opacity-60">
         <Particles density={50} />
       </div>
-  <div className="grid md:grid-cols-2 gap-6 md:gap-8 items-center w-full pb-0 md:pb-0 relative">
+      <div className="grid md:grid-cols-2 gap-6 md:gap-8 items-center w-full pb-0 md:pb-0 relative">
         <div>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -42,9 +43,38 @@ export default function Hero() {
           >
             Spatial Intelligence, Powered by <span className="text-primary">Code</span>
           </motion.h1>
-          <p className="mt-6 text-base sm:text-lg text-white/80 max-w-prose leading-relaxed">
-            Hey, I’m Kevin — the GIS Nerd. I build tools that connect geography, data, and design to turn complex information into insight.
-          </p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="mt-4 flex items-center gap-2 text-white/60"
+          >
+            <MapPin size={16} />
+            <span className="text-sm">Trinity, FL</span>
+          </motion.div>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="mt-6 text-base sm:text-lg text-white/80 max-w-prose leading-relaxed"
+          >
+            I'm Kevin Mazur. I specialize in web GIS development, spatial analysis, and automated workflows that turn complex geographic data into practical tools for decision-makers.
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="mt-6"
+          >
+            <a 
+              href="/Kevin_Mazur_GIS_Resume.pdf" 
+              download
+              className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-black font-semibold rounded-lg hover:bg-primary/90 transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105"
+            >
+              <Download size={20} />
+              Download Resume
+            </a>
+          </motion.div>
         </div>
         <motion.div
           ref={visualRef}
