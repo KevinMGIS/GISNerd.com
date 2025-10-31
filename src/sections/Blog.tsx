@@ -1,18 +1,40 @@
 import { motion } from 'framer-motion'
 import { useState, useRef, useEffect } from 'react'
 import BlogCard from '../blog/BlogCard'
-import { blogPosts } from '../blog/posts'
 import BlogModal from '../blog/BlogModal'
+import { client } from '../lib/sanity'
+import type { SanityBlogPost } from '../lib/sanity'
 
 export default function Blog() {
   const [openSlug, setOpenSlug] = useState<string | null>(null)
   const scrollerRef = useRef<HTMLDivElement | null>(null)
   const [canScrollLeft, setCanScrollLeft] = useState(false)
   const [canScrollRight, setCanScrollRight] = useState(true)
+  const [posts, setPosts] = useState<SanityBlogPost[]>([])
+  const [loading, setLoading] = useState(true)
 
-  const sorted = [...blogPosts].sort(
-    (a, b) => Date.parse(b.date) - Date.parse(a.date)
-  )
+  // Fetch blog posts from Sanity
+  useEffect(() => {
+    async function fetchPosts() {
+      try {
+        const query = `*[_type == "post"] | order(publishedAt desc)[0...6] {
+          _id,
+          title,
+          slug,
+          excerpt,
+          publishedAt,
+          readTime
+        }`
+        const data = await client.fetch<SanityBlogPost[]>(query)
+        setPosts(data)
+      } catch (error) {
+        console.error('Error fetching blog posts:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+    fetchPosts()
+  }, [])
 
   const updateScrollState = () => {
     const el = scrollerRef.current
@@ -27,7 +49,7 @@ export default function Blog() {
     updateScrollState()
     el.addEventListener('scroll', updateScrollState)
     return () => el.removeEventListener('scroll', updateScrollState)
-  }, [])
+  }, [posts])
 
   const scrollBy = (dir: 'left' | 'right') => {
     const el = scrollerRef.current
@@ -35,10 +57,22 @@ export default function Blog() {
     const cardWidth = el.querySelector('article')?.clientWidth || 300
     el.scrollBy({ left: dir === 'left' ? -cardWidth - 24 : cardWidth + 24, behavior: 'smooth' })
   }
+
+  if (loading) {
+    return (
+      <section id="blog" className="pt-12 pb-24 snap-section">
+        <div className="mb-10">
+          <h2 className="text-3xl font-bold">Blog</h2>
+        </div>
+        <div className="text-center py-12 text-white/60">Loading posts...</div>
+      </section>
+    )
+  }
+
   return (
   <section id="blog" className="pt-12 pb-24 snap-section">
       <div className="mb-10 flex items-center justify-between">
-        <h2 className="text-3xl font-bold">Blog</h2>
+        <h2 className="text-3xl font-bold">Latest Posts</h2>
         <div className="hidden md:flex items-center gap-2 text-sm text-white/60 select-none">
           <span>Scroll</span>
           <span aria-hidden>→</span>
@@ -73,9 +107,9 @@ export default function Blog() {
           className="flex gap-6 overflow-x-auto snap-x snap-mandatory px-1 custom-scrollbar"
           style={{ scrollSnapType: 'x mandatory' }}
         >
-          {sorted.slice(0, 6).map((p, i) => (
+          {posts.map((p, i) => (
             <motion.div
-              key={p.slug}
+              key={p._id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-100px' }}
@@ -87,8 +121,13 @@ export default function Blog() {
               }}
               className="snap-start shrink-0 w-[85%] sm:w-[60%] md:w-[33.333%]"
             >
-              <div onClick={() => setOpenSlug(p.slug)} className="cursor-pointer">
-                <BlogCard title={p.title} excerpt={p.excerpt} date={p.date} readTime={p.readTime} />
+              <div onClick={() => setOpenSlug(p.slug.current)} className="cursor-pointer">
+                <BlogCard 
+                  title={p.title} 
+                  excerpt={p.excerpt} 
+                  date={p.publishedAt} 
+                  readTime={p.readTime} 
+                />
               </div>
             </motion.div>
           ))}

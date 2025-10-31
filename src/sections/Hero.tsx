@@ -1,6 +1,6 @@
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion'
 import { useRef, useState } from 'react'
-import { Download, MapPin } from 'lucide-react'
+import { MapPin } from 'lucide-react'
 import ContourLines from '../components/ContourLines'
 import Particles from '../components/Particles'
 
@@ -41,7 +41,7 @@ export default function Hero() {
             transition={{ duration: 0.6 }}
             className="mt-0 text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight"
           >
-            Spatial Intelligence, Powered by <span className="text-primary">Code</span>
+            Notes from the intersection of <span className="text-primary">maps and code</span>
           </motion.h1>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -58,23 +58,8 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="mt-6 text-base sm:text-lg text-white/80 max-w-prose leading-relaxed"
           >
-            I'm Kevin Mazur. I specialize in web GIS development, spatial analysis, and automated workflows that turn complex geographic data into practical tools for decision-makers.
+            I'm Kevin Mazur, a GIS Manager writing about spatial analysis, automation, and building tools that solve real problems. From layoff to liftoff, this is where I share what I'm learning.
           </motion.p>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="mt-6"
-          >
-            <a 
-              href="/Kevin_Mazur_GIS_Resume.pdf" 
-              download="Kevin_Mazur_GIS_Resume.pdf"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-black font-semibold rounded-lg hover:bg-primary/90 transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105"
-            >
-              <Download size={20} />
-              Download Resume
-            </a>
-          </motion.div>
         </div>
         <motion.div
           ref={visualRef}
