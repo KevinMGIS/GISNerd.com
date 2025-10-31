@@ -126,7 +126,8 @@ export default function Blog() {
                   title={p.title} 
                   excerpt={p.excerpt} 
                   date={p.publishedAt} 
-                  readTime={p.readTime} 
+                  readTime={p.readTime}
+                  postId={p._id}
                 />
               </div>
             </motion.div>

@@ -6,6 +6,7 @@ import { client } from '../lib/sanity'
 import type { SanityBlogPost } from '../lib/sanity'
 import { PortableText } from '@portabletext/react'
 import { formatDate } from '../utils/formatDate'
+import { getPlaceholderForPost } from '../utils/blogPlaceholders'
 import SEO from '../components/SEO'
 import Footer from '../components/Footer'
 
@@ -88,6 +89,15 @@ export default function BlogPostPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
+          {/* Hero Image */}
+          <div className="aspect-video rounded-xl overflow-hidden mb-8 bg-slate-900">
+            <img 
+              src={getPlaceholderForPost(post._id)} 
+              alt="" 
+              className="w-full h-full object-cover"
+            />
+          </div>
+
           {/* Header */}
           <header className="mb-8 pb-8 border-b border-white/10">
             <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
