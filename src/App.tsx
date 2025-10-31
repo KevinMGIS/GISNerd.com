@@ -5,12 +5,13 @@ import NotFound from './components/NotFound'
 import Hero from './sections/Hero'
 import Skills from './sections/Skills'
 import Blog from './sections/Blog'
-import Portfolio from './sections/Portfolio'
 import Contact from './sections/Contact'
 import ProjectDetail from './sections/ProjectDetail'
 import ScrollToTop from './components/ScrollToTop'
 import StudioPage from './pages/StudioPage'
 import BlogPostPage from './pages/BlogPostPage'
+import BlogListPage from './pages/BlogListPage'
+import PortfolioPage from './pages/PortfolioPage'
 
 function Home() {
   return (
@@ -23,9 +24,9 @@ function Home() {
             <span>GIS Nerd</span>
           </Link>
           <nav className="flex gap-6 text-sm">
-            <a href="#blog" className="transition-colors hover:text-primary">Blog</a>
+            <Link to="/blog" className="transition-colors hover:text-primary">Blog</Link>
             <a href="#skills" className="transition-colors hover:text-primary">Skills</a>
-            <a href="#portfolio" className="transition-colors hover:text-primary">Portfolio</a>
+            <Link to="/portfolio" className="transition-colors hover:text-primary">Portfolio</Link>
             <a href="#contact" className="transition-colors hover:text-primary">Contact</a>
           </nav>
         </div>
@@ -37,8 +38,6 @@ function Home() {
         <Blog />
 
         <Skills />
-
-  <Portfolio />
 
         <Contact />
       </main>
@@ -55,7 +54,9 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/admin/*" element={<StudioPage />} />
+        <Route path="/blog" element={<BlogListPage />} />
         <Route path="/blog/:slug" element={<BlogPostPage />} />
+        <Route path="/portfolio" element={<PortfolioPage />} />
         <Route path="/projects/:id" element={<ProjectDetail />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

@@ -90,7 +90,7 @@ export default function BlogPostPage() {
           transition={{ duration: 0.5 }}
         >
           {/* Hero Image */}
-          <div className="aspect-video rounded-xl overflow-hidden mb-8 bg-slate-900">
+          <div className="h-40 rounded-xl overflow-hidden mb-8 bg-slate-900">
             <img 
               src={getPlaceholderForPost(post._id)} 
               alt="" 

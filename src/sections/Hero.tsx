@@ -29,7 +29,7 @@ export default function Hero() {
   }
 
   return (
-    <section id="hero" ref={ref} className="relative overflow-hidden min-h-[55vh] md:min-h-[58vh] flex items-start snap-section pt-0">
+    <section id="hero" ref={ref} className="relative overflow-hidden py-12 flex items-start snap-section">
       <div className="absolute inset-0 pointer-events-none opacity-60">
         <Particles density={50} />
       </div>
@@ -73,7 +73,7 @@ export default function Hero() {
           style={{ y }}
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
-          className="relative aspect-[5/4] rounded-xl bg-surface/60 border border-white/5 overflow-hidden cursor-pointer"
+          className="relative h-full min-h-[300px] rounded-xl bg-surface/60 border border-white/5 overflow-hidden cursor-pointer"
         >
           <motion.div 
             className="absolute inset-0"
