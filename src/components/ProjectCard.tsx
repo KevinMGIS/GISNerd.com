@@ -7,7 +7,12 @@ export default function ProjectCard({ id, title, subtitle, description, image, t
     <article className="rounded-xl overflow-hidden border border-white/5 bg-surface/70 transition-all duration-500 ease-out hover:scale-[1.02] hover:-translate-y-2 hover:shadow-[0_0_40px_rgba(255,107,53,0.2)] hover:border-primary/20">
       <div className="aspect-[3/2] bg-black/30 overflow-hidden">
         {image ? (
-          <img src={image} alt="" className="w-full h-full object-cover opacity-90" loading="lazy" />
+          <img
+            src={image}
+            alt={`${title} project preview`}
+            className="w-full h-full object-cover opacity-90"
+            loading="lazy"
+          />
         ) : (
           <AnalysisGrid />
         )}

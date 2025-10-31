@@ -17,7 +17,7 @@ export default function BlogCard({ title, excerpt, date, readTime, postId }: Pro
       <div className="h-32 bg-slate-900">
         <img 
           src={placeholderImage} 
-          alt="" 
+          alt={`${title} cover graphic`} 
           className="w-full h-full object-cover"
         />
       </div>
