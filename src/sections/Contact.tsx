@@ -14,7 +14,7 @@ export default function Contact() {
           <Download size={20} />
           Download Resume
         </a>
-  <a href="mailto:kevin@gisnerd.com" className="px-4 py-2 rounded-md border border-primary/40 text-primary hover:border-primary/60 hover:bg-primary/5 transition-colors">Email</a>
+  <a href="mailto:kevin.m.mazur@gmail.com" className="px-4 py-2 rounded-md border border-primary/40 text-primary hover:border-primary/60 hover:bg-primary/5 transition-colors">Email</a>
         <a href="https://www.linkedin.com/in/kevin-mazur-6942131/" target="_blank" rel="noreferrer" className="px-4 py-2 rounded-md border border-white/20 hover:border-white/30 hover:bg-white/5 transition-colors">LinkedIn</a>
       </div>
     </section>
